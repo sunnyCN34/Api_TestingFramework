@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="PaymentsAPI " tests="5" time="0.713">
+  <testsuite name="GET/ GetPayments" id="8e9c4918-51ae-4aaa-9101-33d57cd52835" tests="1" failures="0" errors="0" time="0.109">
+    <testcase name="Response time is less than 200ms" time="0.109"/>
+  </testsuite>
+  <testsuite name="GET/ GetGoals" id="b4b24cf0-5aa7-46f3-814b-8d900e5c5aa7" tests="0" failures="0" errors="0" time="0.585"/>
+  <testsuite name="POST/AddPayment" id="17a2dc13-1499-483d-bce6-05fed22e0da0" tests="0" failures="0" errors="0" time="0.007"/>
+  <testsuite name="POST/AddGoal" id="358ab97d-9686-463b-afa2-9639c0f90631" tests="0" failures="0" errors="0" time="0.006"/>
+  <testsuite name="POST/AddGoal Copy" id="87398039-8fea-4b5f-b9f3-0a00255e9f30" tests="0" failures="0" errors="0" time="0.006"/>
+</testsuites>

@@ -1,0 +1,46 @@
+{
+	"id": "1a74fed8-91d2-41f4-82d0-f8d4d2de4fe1",
+	"name": "DCU API",
+	"values": [
+		{
+			"key": "auth0_domain",
+			"value": "dcu.auth0.com",
+			"description": {
+				"content": "",
+				"type": "text/plain"
+			},
+			"enabled": true
+		},
+		{
+			"key": "dcuToken",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2RjdS5hdXRoMC5jb20vIiwic3ViIjoiWDJoR21KOXAyZ0l2M3BDODl3MWdzaXpUaDhONFBtODZAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcWEtYWNjb3VudHMuZGN1bmV0Lm9yZyIsImlhdCI6MTU0NDEyNTc4NiwiZXhwIjoxNTQ0MjEyMTg2LCJhenAiOiJYMmhHbUo5cDJnSXYzcEM4OXcxZ3NpelRoOE40UG04NiIsInNjb3BlIjoib3BlbmlkIGRjdTphdXRoIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.4pSELlLpEDt3ZOBjxMfkxeuJ2Au_xL02y0s-mTkjVD4",
+			"enabled": true
+		},
+		{
+			"key": "ACCTS_V2_QA",
+			"value": "https://qa-accounts.dcunet.org",
+			"description": "",
+			"enabled": true
+		},
+		{
+			"key": "auth0_domain",
+			"value": "https://dcu.auth0.com",
+			"description": "",
+			"enabled": true
+		},
+		{
+			"key": "DCU-PF-API_QA",
+			"value": "https://qa-accounts.dcunet.org",
+			"description": "",
+			"enabled": true
+		},
+		{
+			"key": "dcuIdToken",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-01-29T14:25:17.358Z",
+	"_postman_exported_using": "Postman/6.7.1"
+}

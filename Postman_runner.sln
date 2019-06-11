@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Postman_runner", "Postman_runner.csproj", "{97BD17F8-8A2C-486B-BAE8-2E94E08AD5FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97BD17F8-8A2C-486B-BAE8-2E94E08AD5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97BD17F8-8A2C-486B-BAE8-2E94E08AD5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97BD17F8-8A2C-486B-BAE8-2E94E08AD5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97BD17F8-8A2C-486B-BAE8-2E94E08AD5FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDB66B17-5064-42F3-97BE-0E4A076CC536}
+	EndGlobalSection
+EndGlobal

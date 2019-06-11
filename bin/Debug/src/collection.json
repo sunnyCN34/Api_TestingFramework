@@ -1,0 +1,746 @@
+{
+	"info": {
+		"_postman_id": "86c0d8eb-5f9c-4abf-8019-d35bcd0fdc65",
+		"name": "DCU API - QA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtain access/enterprise token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ddf6f71a-6c55-432d-81f6-071f1b28e817",
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"dcuToken\", jsonData.access_token);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have an access_token property\", function()",
+							"{",
+							"    const responseBody = pm.response.json();",
+							"    pm.expect(responseBody).to.have.property('access_token').that.is.not.null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "X2hGmJ9p2gIv3pC89w1gsizTh8N4Pm86",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "5ud8qic1rg2qBoKmrZNMLw2bmXgNYDus--4OHd3QJyN6h6RIS27AJWlgdGoJ-O_k",
+							"type": "text"
+						},
+						{
+							"key": "audience",
+							"value": "https://qa-accounts.dcunet.org",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "offline_access",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{auth0_domain}}/oauth/token",
+					"host": [
+						"{{auth0_domain}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": "This is the OAuth 2.0 grant that server processes utilize in order to access an API. Use this endpoint to directly request an `access_token` by using the Client Credentials (a Client Id and a Client Secret)."
+			},
+			"response": []
+		},
+		{
+			"name": "Get IdToken for Unauthenticated User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e4afeba-c481-41a9-8fd9-8382c55f5889",
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have a responsePayload property that has an idToken property\", function() {",
+							"    const responseBody = pm.response.json();",
+							"",
+							"    pm.expect(responseBody).to.have.property('responsePayload');",
+							"",
+							"    pm.expect(responseBody.responsePayload).to.have.property('idToken').that.is.not.null;",
+							"",
+							"    postman.setEnvironmentVariable(\"dcuIdToken\", responseBody.responsePayload.idToken);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"PersistentUserId\": \"dABWAEkATAA5ADgAWgAvAFgARgBaAHYAdQBEAFcASgBoAHcAVgBjADgAZwA9AD0A\",\n}"
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/USERS/GETIDTOKEN",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"USERS",
+						"GETIDTOKEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a111e2af-7cb7-4245-976f-4bdd309672fb",
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have a responsePayload property that has an idToken property\", function() {",
+							"    const responseBody = pm.response.json();",
+							"",
+							"    pm.expect(responseBody).to.have.property('responsePayload');",
+							"",
+							"    pm.expect(responseBody.responsePayload).to.have.property('idToken').that.is.not.null;",
+							"",
+							"    postman.setEnvironmentVariable(\"dcuIdToken\", responseBody.responsePayload.idToken);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"5655978\",\n\t\"password\": \"dcupassword\"\n}"
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/USERS/AUTHENTICATE",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"USERS",
+						"AUTHENTICATE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Features",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id_token",
+						"value": "{{dcuIdToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/FEATURES",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"FEATURES"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c2d7afa-67c5-45a3-b2d8-b0bc5d1d3aee",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have a responsePayload property\", function() {",
+							"   const responseBody = pm.response.json(); ",
+							"   pm.expect(responseBody).to.have.property('responsePayload').that.is.not.null;",
+							"});",
+							"",
+							"pm.test(\"responsePayload property should contain a persistentID\", function() {",
+							"    const responseBody = pm.response.json();",
+							"    pm.expect(responseBody.responsePayload).to.have.property('persistentID').that.is.not.null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "id_token",
+						"value": "{{dcuIdToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/USERS/",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"USERS",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8cfb0d55-36d2-4e0a-b993-82a91210d24e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have a responsePayload property\", function() {",
+							"    const responseBody = pm.response.json();",
+							"    pm.expect(responseBody).to.have.property('responsePayload');",
+							"});",
+							"",
+							"pm.test(\"responsePayload object should be an array that is not empty\", function() {",
+							"    const body = pm.response.json();",
+							"    pm.expect(body).to.have.property('responsePayload');",
+							"    pm.expect(body.responsePayload).to.be.an('array').with.lengthOf.above(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id_token",
+						"value": "{{dcuIdToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/USERS/ACCOUNTS/",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"USERS",
+						"ACCOUNTS",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Notifications",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8cfb0d55-36d2-4e0a-b993-82a91210d24e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have a responsePayload property\", function() {",
+							"    const responseBody = pm.response.json();",
+							"    pm.expect(responseBody).to.have.property('responsePayload');",
+							"});",
+							"",
+							"pm.test(\"responsePayload object should be an array that is not empty\", function() {",
+							"    const body = pm.response.json();",
+							"    pm.expect(body).to.have.property('responsePayload');",
+							"    pm.expect(body.responsePayload).to.be.an('array').with.lengthOf.above(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id_token",
+						"value": "{{dcuIdToken}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/NOTIFICATIONS/",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"NOTIFICATIONS",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "History",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64d2386f-d339-45d2-bd9d-b169da66d34c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have a responsePayload property\", function() {",
+							"    const responseBody = pm.response.json();",
+							"    pm.expect(responseBody).to.have.property('responsePayload');",
+							"});",
+							"",
+							"pm.test(\"responsePayload object should be an array that is not empty\", function() {",
+							"    const body = pm.response.json();",
+							"    pm.expect(body).to.have.property('responsePayload');",
+							"    pm.expect(body.responsePayload).to.be.an('array').with.lengthOf.above(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id_token",
+						"value": "{{dcuIdToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/USERS/ACCOUNTS/OQA1AHIAZwBEAEEAeABnAEUAeABLAC8AUgBMAFoAUwA4AEMAdQBWAFQAdwA9AD0A/TRANSACTIONS?StartDate=1/1/2018&EndDate=1/1/2019",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"USERS",
+						"ACCOUNTS",
+						"OQA1AHIAZwBEAEEAeABnAEUAeABLAC8AUgBMAFoAUwA4AEMAdQBWAFQAdwA9AD0A",
+						"TRANSACTIONS"
+					],
+					"query": [
+						{
+							"key": "StartDate",
+							"value": "1/1/2018"
+						},
+						{
+							"key": "EndDate",
+							"value": "1/1/2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "History for user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64d2386f-d339-45d2-bd9d-b169da66d34c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have a responsePayload property\", function() {",
+							"    const responseBody = pm.response.json();",
+							"    pm.expect(responseBody).to.have.property('responsePayload');",
+							"});",
+							"",
+							"pm.test(\"responsePayload object should be an array that is not empty\", function() {",
+							"    const body = pm.response.json();",
+							"    pm.expect(body).to.have.property('responsePayload');",
+							"    pm.expect(body.responsePayload).to.be.an('array').with.lengthOf.above(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id_token",
+						"value": "{{dcuIdToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/USERS/ACCOUNTS/TRANSACTIONS?StartDate=1/1/2018&EndDate=1/1/2019",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"USERS",
+						"ACCOUNTS",
+						"TRANSACTIONS"
+					],
+					"query": [
+						{
+							"key": "StartDate",
+							"value": "1/1/2018"
+						},
+						{
+							"key": "EndDate",
+							"value": "1/1/2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Money Movement",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"PaymentId\" : \"ABCDEG1234567\",\n\t\"PersistentIDUser\": \"dABWAEkATAA5ADgAWgAvAFgARgBaAHYAdQBEAFcASgBoAHcAVgBjADgAZwA9AD0A\",\n\t\"PersistentIDAccountFrom\": \"LwBXAE4AUgBUAFoAKwBUAFkAYgAwAEoAYQBwAHAAbwB2AFcARwBpAGkAUQA9AD0A\", \n\t\"PersistentIDAccountTo\" : \"eQBPAGkAaABMAFYAbwBuAFoASAB0AGIAWABQADYAUwBlADkARQA4AEgAUQA9AD0A\",\n\t\"Amount\" : \"0.01\",\n\t\"PaymentAmountType\" : 0,\n\t\"HistoryDescription\" : \"Recurring PF OnUs\",\n\t\"Memo\" : \"Poop\"\n}"
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/MOVEMONEY",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"MOVEMONEY"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Money Movement - missing user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"PaymentId\" : \"ABCDEG1234567\",\n\t\"PersistentIDUser\": \"dABWAEkATAA5ADgAWgAvAFgARgBaAHYAdQBEAFcASgBoAHcAVgBjADgAZwA9AD0A\",\n\t\"PersistentIDAccountFrom\": \"LwBXAE4AUgBUAFoAKwBUAFkAYgAwAEoAYQBwAHAAbwB2AFcARwBpAGkAUQA9AD0A\", \n\t\"PersistentIDAccountTo\" : \"eQBPAGkAaABMAFYAbwBuAFoASAB0AGIAWABQADYAUwBlADkARQA4AEgAUQA9AD0A\",\n\t\"Amount\" : \"0.01\",\n\t\"PaymentAmountType\" : 0,\n\t\"HistoryDescription\" : \"Recurring PF OnUs\",\n\t\"Memo\" : \"Poop\"\n}"
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/MOVEMONEY",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"MOVEMONEY"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Money Movement - greater than Available",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"PaymentId\" : \"ABCDEG1234567\",\n\t\"PersistentIDUser\": \"dABWAEkATAA5ADgAWgAvAFgARgBaAHYAdQBEAFcASgBoAHcAVgBjADgAZwA9AD0A\",\n\t\"PersistentIDAccountFrom\": \"LwBXAE4AUgBUAFoAKwBUAFkAYgAwAEoAYQBwAHAAbwB2AFcARwBpAGkAUQA9AD0A\", \n\t\"PersistentIDAccountTo\" : \"eQBPAGkAaABMAFYAbwBuAFoASAB0AGIAWABQADYAUwBlADkARQA4AEgAUQA9AD0A\",\n\t\"Amount\" : \"123456789.00\",\n\t\"PaymentAmountType\" : 0,\n\t\"HistoryDescription\" : \"Recurring PF OnUs\",\n\t\"Memo\" : \"Poop\"\n}"
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/MOVEMONEY",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"MOVEMONEY"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Money Movement - bad from account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"PaymentId\" : \"ABCDEG1234567\",\n\t\"PersistentIDUser\": \"dABWAEkATAA5ADgAWgAvAFgARgBaAHYAdQBEAFcASgBoAHcAVgBjADgAZwA9AD0A\",\n\t\"PersistentIDAccountFrom\": \"UQBXAGQAWgBYADYAbgBrAFQATQBkAGYAawBVAHAAUgBhADUAaAArAEgAZwA9AD0A\", \n\t\"PersistentIDAccountTo\" : \"eQBPAGkAaABMAFYAbwBuAFoASAB0AGIAWABQADYAUwBlADkARQA4AEgAUQA9AD0A\",\n\t\"Amount\" : \"11111111111111110.01\",\n\t\"PaymentAmountType\" : 0,\n\t\"HistoryDescription\" : \"Recurring PF OnUs\",\n\t\"Memo\" : \"Poop\"\n}"
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/MOVEMONEY",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"MOVEMONEY"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset (generate) password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{dcuToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"999999142\",\n\t\"password\": \"dcupassword\", \n\t\"GenerateRandomPassword\" : \"false\"\n}"
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/USERS/PASSWORDS/RESET",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"USERS",
+						"PASSWORDS",
+						"RESET"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "id_token",
+						"value": "{{dcuIdToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"999999142\",\n\t\"password\": \"dcupassword\", \n\t\"GenerateRandomPassword\" : \"false\"\n}\n\n"
+				},
+				"url": {
+					"raw": "{{DCU-PF-API_QA}}/v2/USERS/PASSWORDS/CHANGE",
+					"host": [
+						"{{DCU-PF-API_QA}}"
+					],
+					"path": [
+						"v2",
+						"USERS",
+						"PASSWORDS",
+						"CHANGE"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{dcuToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6e6a0ee5-689a-468f-a346-eceee2475209",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "13354aa8-35c7-4abd-8c99-89b9fab6326a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="DCU API - QA" tests="15" time="6.609">
+  <testsuite name="Obtain access/enterprise token" id="0f34b92d-2db4-4f3b-a7a7-e69158e2165c" tests="2" failures="0" errors="0" time="0.789">
+    <testcase name="Status code is 200" time="0.789"/>
+    <testcase name="Should have an access_token property" time="0.789"/>
+  </testsuite>
+  <testsuite name="Get IdToken for Unauthenticated User" id="d8377a9b-b7ed-4509-bad3-583ff9afe9b6" tests="2" failures="0" errors="0" time="0.086">
+    <testcase name="Status code is 200" time="0.086"/>
+    <testcase name="Should have a responsePayload property that has an idToken property" time="0.086"/>
+  </testsuite>
+  <testsuite name="Authenticate User" id="5113761b-f096-4657-ace6-469a9789ab08" tests="2" failures="0" errors="0" time="0.082">
+    <testcase name="Status code is 200" time="0.082"/>
+    <testcase name="Should have a responsePayload property that has an idToken property" time="0.082"/>
+  </testsuite>
+  <testsuite name="Features" id="c4f62f2c-7638-4691-8b4b-c0c3b6595e13" tests="0" failures="0" errors="0" time="0.060"/>
+  <testsuite name="Get User" id="d91a1410-31d6-473e-a765-bec56b590b20" tests="3" failures="0" errors="0" time="0.071">
+    <testcase name="Status code is 200" time="0.071"/>
+    <testcase name="Should have a responsePayload property" time="0.071"/>
+    <testcase name="responsePayload property should contain a persistentID" time="0.071"/>
+  </testsuite>
+  <testsuite name="Accounts" id="c288e7a6-6ce1-4894-a2fb-07971722e57e" tests="3" failures="0" errors="0" time="0.236">
+    <testcase name="Status code is 200" time="0.236"/>
+    <testcase name="Should have a responsePayload property" time="0.236"/>
+    <testcase name="responsePayload object should be an array that is not empty" time="0.236"/>
+  </testsuite>
+  <testsuite name="Notifications" id="7bf7dddb-4ade-4764-abf5-9c059fe34173" tests="3" failures="0" errors="0" time="0.149">
+    <testcase name="Status code is 200" time="0.149"/>
+    <testcase name="Should have a responsePayload property" time="0.149"/>
+    <testcase name="responsePayload object should be an array that is not empty" time="0.149"/>
+  </testsuite>
+  <testsuite name="History" id="63e0e6c3-8311-421d-b4d2-beb383340078" tests="3" failures="3" errors="0" time="0.034">
+    <testcase name="Status code is 200" time="0.034" classname="History">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 86c0d8eb-5f9c-4abf-8019-d35bcd0fdc65.]]>
+        <![CDATA[Collection name: DCU API - QA.]]>
+        <![CDATA[Request name: History.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 401.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 401
+   at Object.eval sandbox-script.js:1:8).]]>
+      </failure>
+    </testcase>
+    <testcase name="Should have a responsePayload property" time="0.034" classname="History">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 86c0d8eb-5f9c-4abf-8019-d35bcd0fdc65.]]>
+        <![CDATA[Collection name: DCU API - QA.]]>
+        <![CDATA[Request name: History.]]>
+        <![CDATA[Test description: Should have a responsePayload property.]]>
+        <![CDATA[Error message: No data, empty input at 1:1
+
+^.]]>
+        <![CDATA[Stacktrace: JSONError: No data, empty input at 1:1
+
+^
+   at Object.eval sandbox-script.js:2:8).]]>
+      </failure>
+    </testcase>
+    <testcase name="responsePayload object should be an array that is not empty" time="0.034" classname="History">
+      <failure type="AssertionFailure">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 86c0d8eb-5f9c-4abf-8019-d35bcd0fdc65.]]>
+        <![CDATA[Collection name: DCU API - QA.]]>
+        <![CDATA[Request name: History.]]>
+        <![CDATA[Test description: responsePayload object should be an array that is not empty.]]>
+        <![CDATA[Error message: No data, empty input at 1:1
+
+^.]]>
+        <![CDATA[Stacktrace: JSONError: No data, empty input at 1:1
+
+^
+   at Object.eval sandbox-script.js:3:8).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="History for user" id="df0969f9-7893-408c-8b6e-2496e9643ded" tests="3" failures="0" errors="0" time="0.380">
+    <testcase name="Status code is 200" time="0.380"/>
+    <testcase name="Should have a responsePayload property" time="0.380"/>
+    <testcase name="responsePayload object should be an array that is not empty" time="0.380"/>
+  </testsuite>
+  <testsuite name="Money Movement" id="8e11f1d6-61a2-41f6-90a4-ac92e9eb76ca" tests="0" failures="0" errors="0" time="1.180"/>
+  <testsuite name="Money Movement - missing user" id="abca79f2-f4f1-41f4-973d-12a1c5380062" tests="0" failures="0" errors="0" time="1.177"/>
+  <testsuite name="Money Movement - greater than Available" id="18669bda-74bf-4b76-81ed-3b4ce328bbb4" tests="0" failures="0" errors="0" time="1.147"/>
+  <testsuite name="Money Movement - bad from account" id="2b83fc13-67bf-4f5a-8b5d-971180ccf4d8" tests="0" failures="0" errors="0" time="1.163"/>
+  <testsuite name="Reset (generate) password" id="78e571e1-67b6-4900-980c-831e9b949b7d" tests="0" failures="0" errors="0" time="0.029"/>
+  <testsuite name="Change password" id="e5c0575d-3fae-4045-bc63-b465a365bf58" tests="0" failures="0" errors="0" time="0.026"/>
+</testsuites>
